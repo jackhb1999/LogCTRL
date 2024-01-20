@@ -1,0 +1,71 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>fun.loveconcretepeople.LogCTRL</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>LogCTRL</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="jack.h.b.fan@outlook.com" url="https://www.loveconcretepeople.fun">jackhb1999</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    <h2>LogCTRL</h2>
+    <p>Webstorm/Intellij plugin for centralized control of Javascript console.log</p>
+    <p>用于集中控制 Javascript 控制台日志的 Webstorm/Intellij 插件</p>
+        <h3>Features:</h3>
+        <ul>
+            <li>For console.log() in each file, we will automate the process by adding the filename and line number so that you can quickly locate the console.log() after viewing it in your browser.</li>
+            <p>
+对于各个文件中的 console.log() 我们将进行自动化处理，添加文件名和行号，便于您在浏览器中查看后快速定位 console.log() 的位置。
+            </P>
+            <br>
+            <p>
+            shortcut for insertion (⌥ + L) on Mac and (ALT + L) on others
+            </p>
+            <p>
+            快捷键：Mac (⌥ + L); Win/linux (ALT + L)。
+            </p>
+        </ul>
+    <em>most HTML tags may be used</em>
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable parentId="tools" instance="org.lso.logit.settings.LogItSettingsConfigurable"
+                                 id="org.lso.logit.settings.LogItSettingsConfigurable" displayName="LogIt"/>
+        <applicationService serviceImplementation="org.lso.logit.settings.LogItSettings"/>
+        <applicationService serviceImplementation="fun.loveconcretepeople.logControl.settings.LogCTRLSettings"/>
+    </extensions>
+    <actions>
+        <group id="org.lso.logit.LogItActionsGroup" class="org.lso.logit.LogItActionsGroup" text="Log It"
+               description="Generate javascript logs" popup="true">
+            <add-to-group group-id="CodeMenu" anchor="last"/>
+            <action id="org.lso.logit.addLog" class="org.lso.logit.LogItAdd" text="Insert LogIt's Console.Log"
+                    description="Generate a console.log() for that variable">
+                <keyboard-shortcut keymap="$default" first-keystroke="alt L"/>
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta L"/>
+            </action>
+            <action id="org.lso.logit.removeLogs" class="org.lso.logit.LogItRemove" text="Remove LogIt's Console.Log"
+                    description="Remove console.log() generate by LogIt plugin">
+                <keyboard-shortcut keymap="$default" first-keystroke="alt shift L"/>
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta shift L"/>
+            </action>
+        </group>
+        <action id="fun.loveconcretepeople.logControl.addLog" class="fun.loveconcretepeople.logControl.LogCTRLAdd"
+                text="添加打印" description="添加统一的打印">
+            <keyboard-shortcut keymap="$default" first-keystroke="alt K"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta K"/>
+        </action>
+    </actions>
+</idea-plugin>
