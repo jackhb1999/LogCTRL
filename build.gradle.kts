@@ -18,14 +18,15 @@ intellij {
 
     pluginName.set("LogCTRL")
 
-    version.set("2021.1.2")
-    type.set("IU") // Target IDE Platform
-
-//    version.set("2023.3.2")
-//    type.set("IC")
-
+//    version.set("2021.1.2")
+//    type.set("IU") // Target IDE Platform
     // "JavaScript"
-    plugins.set(listOf("JavaScript"))
+//    plugins.set(listOf("JavaScript"))
+
+    version.set("2023.3.2")
+    type.set("IC")
+
+
 }
 
 tasks {
